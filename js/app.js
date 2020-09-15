@@ -12,7 +12,7 @@ fetch(urlAPI)
   .then(response => response.json())
   .then(data => data.results)
   .then(generateData)
-  .catch(error => console.log('Oh, There was an error'))
+  .catch(error => console.log(error))
 
 
 //   employee data
