@@ -11,80 +11,78 @@ const modalClose = document.querySelector(".modal-close");
 fetch(urlAPI)
   .then(response => response.json())
   .then(data => data.results)
-  .then(employeeData)
+  .then(generateData)
+  .catch(error => console.log('Oh, There was an error'))
 
 
 //   employee data
-
-function employeeData(eData) {
-    employee = eData;
+function generateData (data) {
+    employeeInfo = data;
     let html = '';
 
     // looping through the employees data cards
-
-
+    employeeInfo.forEach((person, index) => {   
+    let name = person.name;
+    let email = person.email; 
+    let city = person.location.city;
+    let picture = person.picture;
 
     // building the inner HTML for the employees data cards
-    html += ` 
+     html += ` 
      <div class="card">
-      <img class="avatar" src="member-1.jpg"/>
-       <div class="text-container">
-         <h2 class="name">Light Yagami</h2>
-         <p class="email">light@email.com</p>
-         <p class="address">Chicago</p>
-       </div>
-     </div> `
-}
+       <img class="avatar" src="${picture.medium}" alt="${name.first} ${name.last}"/>
+         <div class="text-container">
+           <h2 class="name">${name.first} ${name.last}</h2>
+           <p class="email">${email}</p>
+           <p class="address">${city}</p>
+         </div>
+      </div> `;
 
-
-// Inserting the grid container into the inner HTML div
-
+      // Inserting the cards into the inner HTML div
+      gridContainer.innerHTML = html;
+  })
+};
 
 
 // displaying the employee information into the overlay modal
-
-function overlayModal(index){
-
-
-    // finding the data-index number of the previous and next employees
+function displayModal(index) {
+  let { name, dob, phone, email, location: { city, street, state, postcode }, picture } = employees[index];
+  let date = new Date(dob.date);      
 
 
-    // storing the total number of employees in the list for the navigation arrows in the overlay
-
-
-
-    // building the overlay modal for the inner HTML (with p tag to display arrows)
-
-
+    // building the overlay modal for the inner HTML (with p tag to display next arrows)
+    let displayCard =`
+      <div class="modal">
+        <p class="modal-close">X</p>
+        <div class="modal-text">
+          <img class="avatar" src="${picture.meduim}" alt="${name.first} ${name.last}"/>
+          <div class="text-container">
+            <h2 class="name">${name.first} ${name.last}</h2>
+            <p class="email">${email}</p>
+            <p class="address">${city}</p>
+            <hr/>
+            <p class="phone">${phone}</p>
+            <p class="location">${street.number} ${street.name} ${state} ${postcode}</p>
+            <p class="dob">Birthday: ${date.getDate()}/ ${date.getMonth()}/ ${date.getFullYear}</p>
+          </div>  
+          <p class="left">&lsaquo</p>
+          <p class="right">&rsaquo</p>
+        </div>
+      </div>`;
 
     // making the overlaydisplay
-
-
-
-    // selecting the arrows in the HTML
-
-
-
-
-    // making the arrow loop even if the employee is first or last in the index using an event listener
-
+    overlay.classList.remove('hidden');
+    modalContainer.innerHTML = displayCard;
 }
-
+    
 
 // adding an event listener to the grid container to display the correct card overlay when clicked 
+gridContainer.addEventListener('click', (event) => {
+  if(event.target !== gridContainer) {
+    const card = event.target.closest(".card");
+    const index = card.getAttribute('data-index');
+    displayModal(index);
+  }
+});
 
-
-
-// hiding the overlay modal when X is clicked using an event listerner
-
-
-
-
-
-// creating a search input
-function search() {
-
-
-    // using a for loop to hide list items that dont match the search
-}
 

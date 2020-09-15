@@ -66,7 +66,7 @@ input {
 
   .card {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-flow: wrap;
     justify-content: space-around;
     border: 1px solid rgb(193, 193, 195);
@@ -79,7 +79,7 @@ input {
   }
 
   .text-container {
-    padding: 5px 40px 0 0;
+    text-align: center;
   }
 
   .name {
@@ -94,8 +94,8 @@ input {
   /* Images */
 
   .avatar {
-      width: 100px;
-      height: 100px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
       padding: 20px 10px;
   }
@@ -106,8 +106,13 @@ input {
   @media (min-width: 768px) {
       .card {
           width: 45%;
+          min-width: 330px;
           flex-wrap: wrap;
           margin-bottom: 15px;
+      }
+
+      .text-container {
+          text-align: left;
       }
 
       header {
@@ -131,5 +136,6 @@ input {
     
     .card {
         width: 30%;
+        max-height: 120px;
     }
 }
