@@ -84,7 +84,7 @@ gridContainer.addEventListener('click', e => {
     const rightArrow = document.querySelector(".right");
 
   // Creating an if else statement to click through each card based on its index number
-  // Then returning to the the start/end if its the first/last card
+  // Then returning to the the start if its the last card in the index
     leftArrow.addEventListener('click', () => {
       if(indexNum < 11) {
       indexNum += 1;
@@ -95,6 +95,8 @@ gridContainer.addEventListener('click', e => {
       }
     });
     
+    // Creating an if else statement to click through each card based on its index number
+    // Then returning to the the end if its the first card in the index
     rightArrow.addEventListener('click', () => {
       if(indexNum > 0) {
         indexNum -= 1;
@@ -112,8 +114,23 @@ modalClose.addEventListener('click', () => {
 });
 
 
-// Creating a search
-function searchField() {
-  
+// Creating a search function and making it case insensitive 
+function filterSearch() {
+  let input = document.getElementById('search');
+  let searchField = input.value.toLowerCase();
 
+  // Loop through all list items, and hide those who don't match the employees names
+  for (let i = 0; i < employees.length; i++) {
+    let dataIndex = `[data-index="${i}"]`;
+    let cardIndex = document.querySelector(dataIndex);
+    let searchName = cardIndex.querySelector('.name').textContent.toLowerCase();
+
+    // If the search field text is included in the cards dataIndex the card is displayed 
+    if (searchName.includes(searchField)){
+        cardIndex.style.display = "";
+    //  else the card becomes hidden
+    } else {
+        cardIndex.style.display = "none";
+    }
+  }
 }

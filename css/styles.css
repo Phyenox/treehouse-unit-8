@@ -32,7 +32,7 @@ input {
 }
 
 .modal {
-    width:375px;
+    width:180px;
     margin: 15% auto auto;
     position: relative;
     text-align: center;
@@ -53,20 +53,22 @@ input {
     display: none;
 }
 
-.left {
+.left,
+.right {
     position: absolute;
-    top: 20%;
-    right: 100%;
-    font-size: 70px;
     color: #fff;
+    cursor: pointer;
+    font-size: 60px;
 }
 
 .right {
-    position: absolute;
     top: 20%;
     left: 100%;
-    font-size: 70px;
-    color: #fff;
+}
+
+.left {
+    top: 20%;
+    right: 100%;
 }
 
 /*--------------------------------
@@ -82,7 +84,7 @@ input {
 
   .card {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-flow: wrap;
     justify-content: space-around;
     border: 1px solid rgb(193, 193, 195);
@@ -105,15 +107,16 @@ input {
   .grid-container .email,
   .grid-container .address {
       color:#778;
+      font-size: 12px;
   }
 
   /* Images */
 
   .avatar {
-      width: 90px;
-      height: 90px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      margin-top: 15px;
+      margin-top: 13px;
   }
 
   /*--------------------------------
@@ -129,6 +132,19 @@ input {
 
       .text-container {
           text-align: left;
+      }
+
+      .grid-container .email,
+      .grid-container .address {
+          font-size: 16px;
+      }
+
+      .modal {
+        width: 335px;
+      }
+
+      .avatar {
+          margin-top: 20px;
       }
 
       header {
@@ -152,6 +168,5 @@ input {
     
     .card {
         width: 30%;
-        max-height: 120px;
     }
 }
